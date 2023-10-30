@@ -30,7 +30,7 @@ public class BookRepository implements BookRepositoryInterface {
 
     @Override
     public void borrowBook(Book book) {
-        for (int i = 0; i < book.se; i++) {
+        for (int i = 0; i < books.size(); i++) {
             
         }
     }
