@@ -8,7 +8,5 @@ public interface BookRepositoryInterface {
     public MyList<Book> getBookList();
     public void borrowBook();
     public void returnBook();
-    public MyList<Book> getUnborrowedBookList();
-    public MyList<Book> getBorrowedBookList();
     public MyList<Book> getBookListByAuthor();
 }

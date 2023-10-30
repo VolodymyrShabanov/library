@@ -1,5 +1,7 @@
 package interfaces;
 
+import lib.MyList;
+import model.Book;
 import model.User;
 
 import java.time.LocalDate;
@@ -10,5 +12,7 @@ import java.time.LocalDate;
  */
 public interface BookServiceInterface {
 
+    public MyList<Book> getUnborrowedBookList();
+    public MyList<Book> getBorrowedBookList();
 
 }
