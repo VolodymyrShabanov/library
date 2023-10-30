@@ -1,6 +1,7 @@
 package repository;
 
 import interfaces.BookRepositoryInterface;
+import lib.MyArrayList;
 import lib.MyList;
 import model.Book;
 
@@ -10,21 +11,28 @@ import model.Book;
  */
 public class BookRepository implements BookRepositoryInterface {
 
+    private final MyArrayList<Book> books;
+
+    public BookRepository() {
+        this.books = new MyArrayList<>();
+    }
 
 
     @Override
-    public void addBook() {
-
+    public void addBook(Book book) {
+        books.add(book);
     }
 
     @Override
     public MyList<Book> getBookList() {
-        return null;
+        return books;
     }
 
     @Override
-    public void borrowBook() {
-
+    public void borrowBook(Book book) {
+        for (int i = 0; i < book.se; i++) {
+            
+        }
     }
 
     @Override
