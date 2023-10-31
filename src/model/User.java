@@ -8,6 +8,9 @@ import lib.MyArrayList;
  * project name: Library
  */
 public class User implements UserInterface {
+
+    private final int id;
+    private static int countId;
     private String userName;
     private String password;
     private MyArrayList<Book> borrowedBooks;
@@ -16,6 +19,7 @@ public class User implements UserInterface {
         this.userName = userName;
         this.password = password;
         this.borrowedBooks = new MyArrayList<>();
+        this.id = countId++;
     }
     @Override
     public String getUserName() {
@@ -30,5 +34,9 @@ public class User implements UserInterface {
     @Override
     public MyArrayList<Book> getUserBooks() {
         return borrowedBooks;
+    }
+
+    public int getId() {
+        return id;
     }
 }

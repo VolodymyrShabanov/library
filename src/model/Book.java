@@ -9,6 +9,9 @@ import java.time.LocalDate;
  * project name: Library
  */
 public class Book implements BookInterface {
+
+    private final int id;
+    private static int countId;
     private String title;
     private String author;
     private int year;
@@ -18,6 +21,7 @@ public class Book implements BookInterface {
         this.title = title;
         this.author = author;
         this.year = year;
+        this.id = countId++;
     }
 
     public String getTitle() {
@@ -62,5 +66,9 @@ public class Book implements BookInterface {
 
     public void setYear(int year) {
         this.year = year;
+    }
+
+    public int getId() {
+        return id;
     }
 }
