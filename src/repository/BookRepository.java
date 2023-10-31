@@ -5,6 +5,8 @@ import lib.MyArrayList;
 import lib.MyList;
 import model.Book;
 
+import java.util.function.Predicate;
+
 /**
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
@@ -17,6 +19,9 @@ public class BookRepository implements BookRepositoryInterface {
         this.books = new MyArrayList<>();
     }
 
+    public void addAllBook(Book...book) {
+        books.addAll(book);
+    }
 
     @Override
     public void addBook(Book book) {
@@ -48,11 +53,22 @@ public class BookRepository implements BookRepositoryInterface {
         return null;
     }
 
+    public MyList<Book> getBookByPredicate(Predicate<Book> predicate) {
+        MyList<Book> result = new MyArrayList<>();
+        for (Book book: books) {
+            if (predicate.test(book)) {
+                result.add(book);
+            }
+        }
+        return result;
+    }
+
+
+
+
     @Override
     public void borrowBook(Book book) {
-        for (int i = 0; i < books.size(); i++) {
-            
-        }
+
     }
 
     @Override

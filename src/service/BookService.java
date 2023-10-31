@@ -26,7 +26,6 @@ public class BookService implements BookServiceInterface {
 
     @Override
     public void returnBook(Book borrowedBook) {
-
     }
 
     @Override

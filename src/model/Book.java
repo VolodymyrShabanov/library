@@ -71,4 +71,15 @@ public class Book implements BookInterface {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", year=" + year +
+                ", currentBookHolder='" + currentBookHolder + '\'' +
+                '}';
+    }
 }
