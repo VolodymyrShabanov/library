@@ -1,8 +1,10 @@
 package interfaces;
 
+import model.Book;
+
 public interface LibraryServiceInterface {
 
-    public void addNewBook();
+    public void addNewBook(Book book);
 
     public void registerNewUser();
 
@@ -18,7 +20,7 @@ public interface LibraryServiceInterface {
 
     public void displayBorrowedBooks();
 
-    public void displayBooksByTitle();
+    public void displayBooksByTitle(String title);
 
     public void displayBooksByAuthor();
 }

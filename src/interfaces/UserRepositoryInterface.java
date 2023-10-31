@@ -5,5 +5,5 @@ import model.User;
 
 public interface UserRepositoryInterface {
     public void addNewUser(User newUser);
-    public User getUserByName(String userName);
+    public User getUserByName();
 }
