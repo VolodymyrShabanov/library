@@ -28,7 +28,7 @@ public class User implements UserInterface {
 
     @Override
     public boolean checkPassword(String password) {
-        return false;
+        return password.equals(this.password);
     }
 
     @Override

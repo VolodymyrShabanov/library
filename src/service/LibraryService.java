@@ -1,63 +1,63 @@
 package service;
 
-import interfaces.BookServiceInterface;
 import interfaces.LibraryServiceInterface;
+import model.Book;
+import model.User;
 
-public class LibraryService implements LibraryServiceInterface {
-
-    private BookServiceInterface bookService;
+public class LibraryService {
+    private BookService bookService;
+    private UserService userService;
 
     public LibraryService() {
         bookService = new BookService();
+        userService = new UserService();
     }
 
-    @Override
-    public void addNewBook(String title, String author, int year) {
-        bookService.addNewBook(title, author, year);
-    }
-
-    @Override
-    public void registerNewUser() {
+    public void addNewBook(Book book) {
 
     }
 
-    @Override
-    public void login() {
-
+    public void registerNewUser(User newUser) {
+        userService.createNewUser(newUser);
     }
 
-    @Override
+    public void login(String userName, String pass) {
+        userService.login(userName, pass);
+    }
+
     public void borrowBook() {
 
     }
 
-    @Override
     public void returnBook() {
 
     }
 
-    @Override
     public void displayBookList() {
 
     }
 
-    @Override
     public void displayAvailableBooks() {
 
     }
 
-    @Override
     public void displayBorrowedBooks() {
 
     }
 
-    @Override
-    public void displayBooksByTitle() {
+    public void displayBooksByTitle(String title) {
 
     }
 
-    @Override
     public void displayBooksByAuthor() {
 
+    }
+
+    public void displayCurrentUserName() {
+        if(userService.getCurrentUser() != null) {
+            System.out.printf("Current user is: '%s'\n", userService.getCurrentUserName());
+        } else {
+            System.err.println("Error: you are not logged in.");
+        }
     }
 }

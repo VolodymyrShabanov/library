@@ -1,6 +1,8 @@
 package view;
 
 import interfaces.MenuInterface;
+import model.Book;
+import model.User;
 import service.BookService;
 import service.LibraryService;
 import service.UserService;
@@ -13,13 +15,9 @@ import java.util.Scanner;
  * project name: Library
  */
 public class Menu implements MenuInterface {
-    private BookService bookService;
-    private UserService userService;
     private LibraryService libraryService;
 
     public Menu() {
-        this.bookService = new BookService();
-        this.userService = new UserService();
         this.libraryService = new LibraryService();
     }
 
@@ -44,6 +42,8 @@ public class Menu implements MenuInterface {
             System.out.println("9. Display books by title");
             System.out.println("10. Display books by author name");
 
+            System.out.println("11. Display current reader name");
+
             System.out.println("0. Exit");
 
             String answer = scanner.nextLine();
@@ -54,10 +54,46 @@ public class Menu implements MenuInterface {
                     // 1. Ask user to provide necessary book data.
                     // 2. Create a new Book element.
                     // 3. Pass this book as argument to Library Service.
+                    System.out.println("Enter the book title: ");
+                    String bookTitle = scanner.nextLine();
+
+                    System.out.println("Enter book author: ");
+                    String bookAuthor = scanner.nextLine();
+
+                    System.out.println("Enter book year: ");
+                    int bookYear = scanner.nextInt();
+
+                    Book tempBook = new Book(bookTitle, bookAuthor, bookYear);
+
+                    libraryService.addNewBook(tempBook);
+
                     break;
                 }
                 case "2" : {
+                    System.out.println("Enter new user name: ");
+                    String userName = scanner.nextLine();
+
+                    System.out.println("Enter new user password: ");
+                    String pass = scanner.nextLine();
+
+                    User tempUser = new User(userName, pass);
+
+                    libraryService.registerNewUser(tempUser);
                   break;
+                }
+                case "3": {
+                    System.out.println("Enter user name: ");
+                    String userName = scanner.nextLine();
+
+                    System.out.println("Enter user password: ");
+                    String pass = scanner.nextLine();
+
+                    libraryService.login(userName, pass);
+                    break;
+                }
+                case "11": {
+                    libraryService.displayCurrentUserName();
+                    break;
                 }
                 case "0": {
                     System.out.println("Shutting down...");
@@ -71,6 +107,8 @@ public class Menu implements MenuInterface {
                     break;
                 }
             }
+
+            scanner.nextLine();
         }
     }
 }
