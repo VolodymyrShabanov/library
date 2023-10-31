@@ -43,8 +43,8 @@ public class BookRepositoryTest {
 
     @Test
     void testGetBookByPredicate() {
-        MyList<Book> books = bookRepository.getBookList();
-
+        MyList<Book> books = bookRepository.getBookByPredicate(book -> book.getAuthor().equals("Herman Melville"));
+        System.out.println(books);
 
     }
 
