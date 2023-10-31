@@ -1,10 +1,12 @@
 package model;
 
+import interfaces.UserInterface;
+
 /**
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
-public class User {
+public class User implements UserInterface {
     private String name;
 
     public User(String name) {

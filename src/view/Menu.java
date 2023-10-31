@@ -1,8 +1,71 @@
 package view;
 
+import interfaces.MenuInterface;
+import service.BookService;
+import service.LibraryService;
+import service.UserService;
+
+import java.sql.SQLOutput;
+import java.util.Scanner;
+
 /**
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
-public class Menu {
+public class Menu implements MenuInterface {
+    private BookService bookService;
+    private UserService userService;
+    private LibraryService libraryService;
+
+    public Menu() {
+        this.bookService = new BookService();
+        this.userService = new UserService();
+        this.libraryService = new LibraryService();
+    }
+
+    public void run() {
+        Scanner scanner = new Scanner(System.in);
+        boolean isRunning = true;
+
+        while (isRunning) {
+            System.out.println("Select your action: ");
+
+            System.out.println("1. Add new book");
+
+            System.out.println("2. Borrow book");
+            System.out.println("3. Return book");
+
+            System.out.println("4. Available books list");
+            System.out.println("5. Borrowed books list");
+            System.out.println("6. Display books by author name");
+
+            System.out.println("0. Exit");
+
+            String answer = scanner.nextLine();
+
+            switch (answer) {
+                case "1" : {
+                    // Add book logic
+                    // 1. Ask user to provide necessary book data.
+                    // 2. Create a new Book element.
+                    // 3. Pass this book as argument to Library Service.
+                    break;
+                }
+                case "2" : {
+                  break;
+                }
+                case "0": {
+                    System.out.println("Shutting down...");
+                    System.out.println("Thanks for using our Library App!");
+
+                    isRunning = false;
+                    break;
+                }
+                default: {
+                    System.err.println("Error: please chose a valid option.");
+                    break;
+                }
+            }
+        }
+    }
 }

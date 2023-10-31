@@ -24,7 +24,7 @@ public class BookRepository implements BookRepositoryInterface {
     }
 
     @Override
-    public MyList<Book> getBookList() {
+    public MyArrayList<Book> getBookList() {
         return books;
     }
 
@@ -41,7 +41,7 @@ public class BookRepository implements BookRepositoryInterface {
     }
 
     @Override
-    public MyList<Book> getBookListByAuthor() {
+    public MyArrayList<Book> getBookListByAuthor() {
         return null;
     }
 }

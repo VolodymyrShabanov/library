@@ -15,8 +15,18 @@ public class BookService implements BookServiceInterface {
 
     private BookRepository bookRepository;
 
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
+    public BookService() {
+        this.bookRepository = new BookRepository();
+    }
+
+    @Override
+    public void borrowBook(String bookTitle) {
+
+    }
+
+    @Override
+    public void returnBook(Book borrowedBook) {
+
     }
 
     @Override

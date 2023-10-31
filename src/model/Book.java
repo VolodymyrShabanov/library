@@ -1,10 +1,14 @@
 package model;
 
+import interfaces.BookInterface;
+
+import java.time.LocalDate;
+
 /**
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
-public class Book {
+public class Book implements BookInterface {
     private String title;
     private String author;
     private int year;
@@ -19,6 +23,26 @@ public class Book {
 
     public String getTitle() {
         return title;
+    }
+
+    @Override
+    public String getDescription() {
+        return null;
+    }
+
+    @Override
+    public LocalDate getPublishingDate() {
+        return null;
+    }
+
+    @Override
+    public LocalDate getBorrowDate() {
+        return null;
+    }
+
+    @Override
+    public User getCurrentBookHolder() {
+        return null;
     }
 
     public void setTitle(String title) {
