@@ -32,12 +32,17 @@ public class Menu implements MenuInterface {
 
             System.out.println("1. Add new book");
 
-            System.out.println("2. Borrow book");
-            System.out.println("3. Return book");
+            System.out.println("2. Register a new user");
+            System.out.println("3. Login");
 
-            System.out.println("4. Available books list");
-            System.out.println("5. Borrowed books list");
-            System.out.println("6. Display books by author name");
+            System.out.println("4. Borrow book");
+            System.out.println("5. Return book");
+
+            System.out.println("6. Library books list");
+            System.out.println("7. Available books list");
+            System.out.println("8. Borrowed books list");
+            System.out.println("9. Display books by title");
+            System.out.println("10. Display books by author name");
 
             System.out.println("0. Exit");
 
@@ -62,7 +67,7 @@ public class Menu implements MenuInterface {
                     break;
                 }
                 default: {
-                    System.err.println("Error: please chose a valid option.");
+                    System.err.println("Error: please choose a valid option.");
                     break;
                 }
             }

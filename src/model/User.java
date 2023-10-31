@@ -1,23 +1,34 @@
 package model;
 
 import interfaces.UserInterface;
+import lib.MyArrayList;
 
 /**
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
 public class User implements UserInterface {
-    private String name;
+    private String userName;
+    private String password;
+    private MyArrayList<Book> borrowedBooks;
 
-    public User(String name) {
-        this.name = name;
+    public User(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+        this.borrowedBooks = new MyArrayList<>();
+    }
+    @Override
+    public String getUserName() {
+        return userName;
     }
 
-    public String getName() {
-        return name;
+    @Override
+    public boolean checkPassword(String password) {
+        return false;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    @Override
+    public MyArrayList<Book> getUserBooks() {
+        return borrowedBooks;
     }
 }

@@ -12,13 +12,12 @@ public class Book implements BookInterface {
     private String title;
     private String author;
     private int year;
-    private boolean isAvailable;
+    private String currentBookHolder = "";
 
     public Book(String title, String author, int year) {
         this.title = title;
         this.author = author;
         this.year = year;
-        this.isAvailable = true;
     }
 
     public String getTitle() {
@@ -41,7 +40,7 @@ public class Book implements BookInterface {
     }
 
     @Override
-    public User getCurrentBookHolder() {
+    public String getCurrentBookHolder() {
         return null;
     }
 
@@ -63,13 +62,5 @@ public class Book implements BookInterface {
 
     public void setYear(int year) {
         this.year = year;
-    }
-
-    public boolean isAvailable() {
-        return isAvailable;
-    }
-
-    public void setAvailable(boolean available) {
-        isAvailable = available;
     }
 }

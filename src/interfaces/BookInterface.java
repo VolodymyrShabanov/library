@@ -13,5 +13,5 @@ public interface BookInterface {
     public String getDescription();
     public LocalDate getPublishingDate();
     public LocalDate getBorrowDate();
-    public User getCurrentBookHolder();
+    public String getCurrentBookHolder();
 }

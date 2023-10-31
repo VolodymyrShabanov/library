@@ -29,6 +29,26 @@ public class BookRepository implements BookRepositoryInterface {
     }
 
     @Override
+    public MyArrayList<Book> getUnborrowedBookList() {
+        return null;
+    }
+
+    @Override
+    public MyArrayList<Book> getBorrowedBookList() {
+        return null;
+    }
+
+    @Override
+    public MyArrayList<Book> getBookListByAuthor(String authorName) {
+        return null;
+    }
+
+    @Override
+    public MyArrayList<Book> getBookListByTitle(String title) {
+        return null;
+    }
+
+    @Override
     public void borrowBook(Book book) {
         for (int i = 0; i < books.size(); i++) {
             
@@ -36,12 +56,7 @@ public class BookRepository implements BookRepositoryInterface {
     }
 
     @Override
-    public void returnBook() {
+    public void returnBook(Book book) {
 
-    }
-
-    @Override
-    public MyArrayList<Book> getBookListByAuthor() {
-        return null;
     }
 }
