@@ -1,13 +1,19 @@
 package service;
 
+import interfaces.BookServiceInterface;
 import interfaces.LibraryServiceInterface;
 
 public class LibraryService implements LibraryServiceInterface {
 
+    private BookServiceInterface bookService;
+
+    public LibraryService() {
+        bookService = new BookService();
+    }
 
     @Override
-    public void addNewBook() {
-
+    public void addNewBook(String title, String author, int year) {
+        bookService.addNewBook(title, author, year);
     }
 
     @Override

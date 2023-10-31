@@ -2,7 +2,7 @@ package interfaces;
 
 public interface LibraryServiceInterface {
 
-    public void addNewBook();
+    public void addNewBook(String title, String author, int year);
 
     public void registerNewUser();
 

@@ -20,6 +20,12 @@ public class BookService implements BookServiceInterface {
     }
 
     @Override
+    public void addNewBook(String title, String author, int year) {
+        Book book = new Book(title, author, year);
+        bookRepository.addBook(book);
+    }
+
+    @Override
     public void borrowBook(String bookTitle) {
 
     }
