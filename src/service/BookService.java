@@ -4,6 +4,7 @@ import lib.MyArrayList;
 import model.Book;
 import repository.BookRepository;
 
+import java.sql.SQLOutput;
 import java.time.LocalDate;
 
 /**
@@ -29,7 +30,12 @@ public class BookService {
 
     public Book borrowBook(int bookId, String userName) {
         Book book = bookRepository.getBookById(bookId);
-        if (book == null || !book.getCurrentBookHolder().isEmpty()) {
+
+        if (book == null) {
+            System.err.println("Error: this book doesn't exist.");
+            return null;
+        } else if (!book.getCurrentBookHolder().isEmpty()) {
+            System.err.println("Error: this book is already borrowed by another user.");
             return null;
         }
 
@@ -39,9 +45,17 @@ public class BookService {
         return book;
     }
 
-    public Book returnBook(int bookId) {
+    public Book returnBook(int bookId, String userName) {
         Book book = bookRepository.getBookById(bookId);
-        if (book == null || book.getCurrentBookHolder().isEmpty()) {
+
+        if (book == null) {
+            System.err.println("Error: this book doesn't exist.");
+            return null;
+        } else if (book.getCurrentBookHolder().isEmpty()) {
+            System.err.println("Error: this book wasn't borrowed.");
+            return null;
+        } else if (!userName.equals(book.getCurrentBookHolder())) {
+            System.err.println("Error: this book is borrowed by another user.");
             return null;
         }
 
