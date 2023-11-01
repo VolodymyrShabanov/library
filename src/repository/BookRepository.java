@@ -19,11 +19,6 @@ public class BookRepository implements BookRepositoryInterface {
         this.books = new MyArrayList<>();
     }
 
-    // используется только для тестирования
-    public void addAllBook(Book...book) {
-        books.addAll(book);
-    }
-
     @Override
     public void addBook(Book book) {
         books.add(book);
@@ -63,7 +58,6 @@ public class BookRepository implements BookRepositoryInterface {
     @Override
     public MyArrayList<Book> getBookListByTitle(String title) {
         return getBookByPredicate(book -> book.getTitle().equals(title));
-
     }
 
     @Override
