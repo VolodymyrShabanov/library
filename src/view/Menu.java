@@ -30,30 +30,37 @@ public class Menu implements MenuInterface {
 
             System.out.println("1. Add new book");
 
+            System.out.println();
+
             System.out.println("2. Register a new user");
             System.out.println("3. Login");
+
+            System.out.println();
 
             System.out.println("4. Borrow book");
             System.out.println("5. Return book");
 
+            System.out.println();
+
             System.out.println("6. Library books list");
-            System.out.println("7. Available books list");
+            System.out.println("7. Unborrowed books list");
             System.out.println("8. Borrowed books list");
             System.out.println("9. Display books by title");
             System.out.println("10. Display books by author name");
 
+            System.out.println();
+
             System.out.println("11. Display current reader name");
+
+            System.out.println();
 
             System.out.println("0. Exit");
 
             String answer = scanner.nextLine();
 
             switch (answer) {
-                case "1" : {
-                    // Add book logic
-                    // 1. Ask user to provide necessary book data.
-                    // 2. Create a new Book element.
-                    // 3. Pass this book as argument to Library Service.
+                case "1": {
+                    clearConsole();
                     System.out.println("Enter the book title: ");
                     String bookTitle = scanner.nextLine();
 
@@ -61,7 +68,7 @@ public class Menu implements MenuInterface {
                     String bookAuthor = scanner.nextLine();
 
                     System.out.println("Enter book year: ");
-                    int bookYear = scanner.nextInt();
+                    int bookYear = Integer.parseInt(scanner.nextLine());
 
                     Book tempBook = new Book(bookTitle, bookAuthor, bookYear);
 
@@ -69,7 +76,8 @@ public class Menu implements MenuInterface {
 
                     break;
                 }
-                case "2" : {
+                case "2": {
+                    clearConsole();
                     System.out.println("Enter new user name: ");
                     String userName = scanner.nextLine();
 
@@ -79,9 +87,10 @@ public class Menu implements MenuInterface {
                     User tempUser = new User(userName, pass);
 
                     libraryService.registerNewUser(tempUser);
-                  break;
+                    break;
                 }
                 case "3": {
+                    clearConsole();
                     System.out.println("Enter user name: ");
                     String userName = scanner.nextLine();
 
@@ -91,11 +100,44 @@ public class Menu implements MenuInterface {
                     libraryService.login(userName, pass);
                     break;
                 }
+                case "6": {
+                    clearConsole();
+                    libraryService.displayBookList();
+                    break;
+                }
+                case "7": {
+                    clearConsole();
+                    libraryService.displayUnborrowedBooks();
+                    break;
+                }
+                case "8": {
+                    clearConsole();
+                    libraryService.displayBorrowedBooks();
+                    break;
+                }
+                case "9": {
+                    clearConsole();
+                    System.out.println("Enter the title: ");
+                    String title = scanner.nextLine();
+
+                    libraryService.displayBooksByTitle(title);
+                    break;
+                }
+                case "10": {
+                    clearConsole();
+                    System.out.println("Enter the author name: ");
+                    String authorName = scanner.nextLine();
+
+                    libraryService.displayBooksByAuthor(authorName);
+                    break;
+                }
                 case "11": {
+                    clearConsole();
                     libraryService.displayCurrentUserName();
                     break;
                 }
                 case "0": {
+                    clearConsole();
                     System.out.println("Shutting down...");
                     System.out.println("Thanks for using our Library App!");
 
@@ -103,12 +145,21 @@ public class Menu implements MenuInterface {
                     break;
                 }
                 default: {
+                    clearConsole();
                     System.err.println("Error: please choose a valid option.");
                     break;
                 }
             }
 
+            System.out.println("Press enter to continue...");
             scanner.nextLine();
+            clearConsole();
+        }
+    }
+
+    public void clearConsole() {
+        for (int i = 0; i < 50; i++) {
+            System.out.println();
         }
     }
 }
