@@ -25,6 +25,11 @@ public class LibraryService {
     }
 
     public void borrowBook(int bookId) {
+        if (userService.getCurrentUser() == null) {
+            System.out.println("User is not logged in");
+            return;
+        }
+
         Book book = bookService.borrowBook(bookId, userService.getCurrentUserName());
         if (book == null) {
             return;
@@ -34,6 +39,11 @@ public class LibraryService {
     }
 
     public void returnBook(int bookId) {
+        if (userService.getCurrentUser() == null) {
+            System.out.println("User is not logged in");
+            return;
+        }
+
         Book book = bookService.returnBook(bookId);
         if (book == null) {
             return;

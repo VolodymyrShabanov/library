@@ -1,12 +1,10 @@
 package service;
 
-import interfaces.BookServiceInterface;
 import lib.MyArrayList;
-import lib.MyList;
 import model.Book;
 import repository.BookRepository;
 
-import javax.sql.rowset.BaseRowSet;
+import java.time.LocalDate;
 
 /**
  * Created by Volodymyr Sh on 30.10.2023
@@ -36,6 +34,7 @@ public class BookService {
         }
 
         book.setCurrentBookHolder(userName);
+        book.setBorrowDate(LocalDate.now());
 
         return book;
     }
@@ -47,6 +46,7 @@ public class BookService {
         }
 
         book.setCurrentBookHolder("");
+        book.setBorrowDate(null);
 
         return book;
     }
