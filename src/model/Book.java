@@ -75,4 +75,14 @@ public class Book implements BookInterface {
     public void setCurrentBookHolder(String currentBookHolder) {
         this.currentBookHolder = currentBookHolder;
     }
+
+    @Override
+    public String toString() {
+        return  String.format("\tTitle: %s\n\tAuthor: %s\n\tYear: %d\n\tBookID: %s\n",
+                getTitle(),
+                getAuthor(),
+                getYear(),
+                getId()
+        );
+    }
 }

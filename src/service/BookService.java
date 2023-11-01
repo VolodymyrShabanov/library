@@ -29,8 +29,15 @@ public class BookService {
         printBookList(bookRepository.getBookList());
     }
 
-    public void borrowBook(String bookTitle) {
+    public Book borrowBook(int bookId, String userName) {
+        Book book = bookRepository.getBookById(bookId);
+        if (book == null || !book.getCurrentBookHolder().isEmpty()) {
+            return null;
+        }
 
+        book.setCurrentBookHolder(userName);
+
+        return book;
     }
 
     public void returnBook(Book borrowedBook) {
@@ -61,12 +68,7 @@ public class BookService {
 
             for (int i = 0; i < bookList.size(); i++) {
                 if (bookList.get(i) != null) {
-                    System.out.printf("\tTitle: %s\n\tAuthor: %s\n\tYear: %d\n\tBookID: %s\n\n",
-                            bookList.get(i).getTitle(),
-                            bookList.get(i).getAuthor(),
-                            bookList.get(i).getYear(),
-                            bookList.get(i).getId()
-                    );
+                    System.out.println(bookList.get(i).toString());
                 }
             }
         }

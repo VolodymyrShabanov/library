@@ -39,4 +39,8 @@ public class User implements UserInterface {
     public int getId() {
         return id;
     }
+
+    public void borrowBook(Book book) {
+        this.borrowedBooks.add(book);
+    }
 }

@@ -54,11 +54,13 @@ public class BookRepository {
         return getBookByPredicate(book -> book.getTitle().equals(title));
     }
 
-    public void borrowBook(Book book) {
+    public Book getBookById(int id) {
+        for (Book book : books) {
+            if (book.getId() == id) {
+                return book;
+            }
+        }
 
-    }
-
-    public void returnBook(Book book) {
-
+        return null;
     }
 }

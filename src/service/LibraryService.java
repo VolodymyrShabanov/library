@@ -24,8 +24,13 @@ public class LibraryService {
         userService.login(userName, pass);
     }
 
-    public void borrowBook() {
+    public void borrowBook(int bookId, String userName) {
+        Book book = bookService.borrowBook(bookId, userName);
+        if (book == null) {
+            return;
+        }
 
+        userService.borrowBook(book);
     }
 
     public void returnBook() {

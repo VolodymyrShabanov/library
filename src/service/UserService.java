@@ -1,6 +1,8 @@
 package service;
 
 import interfaces.UserServiceInterface;
+import lib.MyArrayList;
+import model.Book;
 import model.User;
 import repository.UserRepository;
 
@@ -44,5 +46,21 @@ public class UserService {
 
     public User getCurrentUser() {
         return currentUser;
+    }
+
+    public void borrowBook(Book book) {
+        if (currentUser == null) {
+            return;
+        }
+
+        currentUser.borrowBook(book);
+    }
+
+    public void displayUserBooks() {
+        MyArrayList<Book> books = currentUser.getUserBooks();
+
+        for (Book book : books) {
+            System.out.println(book);
+        }
     }
 }
