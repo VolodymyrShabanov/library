@@ -54,6 +54,15 @@ public class LibraryService {
         userService.displayUserBooks();
     }
 
+    public void displayBookRentalPeriod(int bookId) {
+        long period = bookService.getBookRentalPeriod(bookId);
+        if (period < 0) {
+            System.out.println("The book is not borrowed\n");
+        } else {
+            System.out.printf("The book was borrowed %s day(s) ago\n", period);
+        }
+    }
+
     public void displayBookList() {
         bookService.displayAllBooks();
     }

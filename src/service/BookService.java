@@ -6,6 +6,7 @@ import repository.BookRepository;
 
 import java.sql.SQLOutput;
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Created by Volodymyr Sh on 30.10.2023
@@ -93,5 +94,14 @@ public class BookService {
                 }
             }
         }
+    }
+
+    public long getBookRentalPeriod(int bookId) {
+        Book book = bookRepository.getBookById(bookId);
+        if (book.getBorrowDate() == null) {
+            return -1;
+        }
+
+        return ChronoUnit.DAYS.between(book.getBorrowDate(), LocalDate.now());
     }
 }
