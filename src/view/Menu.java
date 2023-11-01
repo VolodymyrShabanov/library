@@ -47,10 +47,11 @@ public class Menu implements MenuInterface {
             System.out.println("8. Borrowed books list");
             System.out.println("9. Display books by title");
             System.out.println("10. Display books by author name");
+            System.out.println("11. Display user books");
 
             System.out.println();
 
-            System.out.println("11. Display current reader name");
+            System.out.println("12. Display current reader name");
 
             System.out.println();
 
@@ -100,6 +101,13 @@ public class Menu implements MenuInterface {
                     libraryService.login(userName, pass);
                     break;
                 }
+                case "4": {
+                    System.out.println("Enter bookID: ");
+                    int bookID = Integer.parseInt(scanner.nextLine());
+
+                    libraryService.borrowBook(bookID);
+                    break;
+                }
                 case "6": {
                     clearConsole();
                     libraryService.displayBookList();
@@ -132,6 +140,11 @@ public class Menu implements MenuInterface {
                     break;
                 }
                 case "11": {
+                    clearConsole();
+                    libraryService.displayUserBooks();
+                    break;
+                }
+                case "12": {
                     clearConsole();
                     libraryService.displayCurrentUserName();
                     break;

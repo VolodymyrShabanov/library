@@ -9,6 +9,7 @@ import repository.UserRepository;
 public class UserService {
 
     private User currentUser = null;
+
     private UserRepository userRepository;
 
     public UserService() {
@@ -57,10 +58,24 @@ public class UserService {
     }
 
     public void displayUserBooks() {
-        MyArrayList<Book> books = currentUser.getUserBooks();
 
-        for (Book book : books) {
-            System.out.println(book);
+        if(currentUser == null) {
+            System.err.println("Error: user not set.");
+            return;
+        }
+
+        MyArrayList<Book> bookList = currentUser.getUserBooks();
+
+        if (bookList.isEmpty()) {
+            System.out.println("This list is empty.");
+        } else {
+            System.out.println("Book list:");
+
+            for (int i = 0; i < bookList.size(); i++) {
+                if (bookList.get(i) != null) {
+                    System.out.println(bookList.get(i).toString());
+                }
+            }
         }
     }
 }
