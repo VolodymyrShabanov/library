@@ -57,6 +57,14 @@ public class UserService {
         currentUser.borrowBook(book);
     }
 
+    public void returnBook(Book book) {
+        if (currentUser == null) {
+            return;
+        }
+
+        currentUser.returnBook(book);
+    }
+
     public void displayUserBooks() {
 
         if(currentUser == null) {

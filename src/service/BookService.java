@@ -40,8 +40,15 @@ public class BookService {
         return book;
     }
 
-    public void returnBook(Book borrowedBook) {
+    public Book returnBook(int bookId) {
+        Book book = bookRepository.getBookById(bookId);
+        if (book == null || book.getCurrentBookHolder().isEmpty()) {
+            return null;
+        }
 
+        book.setCurrentBookHolder("");
+
+        return book;
     }
 
     public void displayUnborrowedBookList() {

@@ -108,6 +108,13 @@ public class Menu implements MenuInterface {
                     libraryService.borrowBook(bookID);
                     break;
                 }
+                case "5": {
+                    System.out.println("Enter bookID: ");
+                    int bookID = Integer.parseInt(scanner.nextLine());
+
+                    libraryService.returnBook(bookID);
+                    break;
+                }
                 case "6": {
                     clearConsole();
                     libraryService.displayBookList();

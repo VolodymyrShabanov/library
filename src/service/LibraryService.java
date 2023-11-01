@@ -33,8 +33,13 @@ public class LibraryService {
         userService.borrowBook(book);
     }
 
-    public void returnBook() {
+    public void returnBook(int bookId) {
+        Book book = bookService.returnBook(bookId);
+        if (book == null) {
+            return;
+        }
 
+        userService.returnBook(book);
     }
 
     public void displayUserBooks() { userService.displayUserBooks(); }
