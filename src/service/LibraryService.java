@@ -1,6 +1,5 @@
 package service;
 
-import interfaces.LibraryServiceInterface;
 import model.Book;
 import model.User;
 
@@ -14,7 +13,7 @@ public class LibraryService {
     }
 
     public void addNewBook(Book book) {
-
+        bookService.addNewBook(book);
     }
 
     public void registerNewUser(User newUser) {
@@ -34,23 +33,23 @@ public class LibraryService {
     }
 
     public void displayBookList() {
-
+        bookService.displayAllBooks();
     }
 
-    public void displayAvailableBooks() {
-
+    public void displayUnborrowedBooks() {
+        bookService.displayUnborrowedBookList();
     }
 
     public void displayBorrowedBooks() {
-
+        bookService.displayBorrowedBookList();
     }
 
     public void displayBooksByTitle(String title) {
-
+        bookService.displayBooksByTitle(title);
     }
 
-    public void displayBooksByAuthor() {
-
+    public void displayBooksByAuthor(String authorName) {
+        bookService.displayBooksByAuthor(authorName);
     }
 
     public void displayCurrentUserName() {

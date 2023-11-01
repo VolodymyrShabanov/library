@@ -45,7 +45,7 @@ public class Book implements BookInterface {
 
     @Override
     public String getCurrentBookHolder() {
-        return this.currentBookHolder;
+        return currentBookHolder;
     }
 
     public void setTitle(String title) {
