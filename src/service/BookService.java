@@ -4,8 +4,6 @@ import lib.MyArrayList;
 import model.Book;
 import repository.BookRepository;
 
-import java.sql.Array;
-import java.sql.SQLOutput;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
@@ -114,5 +112,19 @@ public class BookService {
         }
 
         return ChronoUnit.DAYS.between(book.getBorrowDate(), LocalDate.now());
+    }
+
+    public void displayBookHolder(int bookId) {
+       Book book = bookRepository.getBookById(bookId);
+       if (book == null) {
+           System.out.println("No books with this identifier are registered");
+           return;
+       }
+       String holder = book.getCurrentBookHolder();
+       if (holder.isEmpty()) {
+           System.out.println("The book is available");
+       }
+
+       System.out.printf("The book is borrowed by %s\n", holder);
     }
 }
