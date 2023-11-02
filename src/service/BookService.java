@@ -1,12 +1,12 @@
 package service;
 
-import interfaces.BookServiceInterface;
 import lib.MyArrayList;
-import lib.MyList;
 import model.Book;
 import repository.BookRepository;
 
-import javax.sql.rowset.BaseRowSet;
+import java.sql.SQLOutput;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Created by Volodymyr Sh on 30.10.2023
@@ -31,17 +31,39 @@ public class BookService {
 
     public Book borrowBook(int bookId, String userName) {
         Book book = bookRepository.getBookById(bookId);
-        if (book == null || !book.getCurrentBookHolder().isEmpty()) {
+
+        if (book == null) {
+            System.err.println("Error: this book doesn't exist.");
+            return null;
+        } else if (!book.getCurrentBookHolder().isEmpty()) {
+            System.err.println("Error: this book is already borrowed by another user.");
             return null;
         }
 
         book.setCurrentBookHolder(userName);
+        book.setBorrowDate(LocalDate.now());
 
         return book;
     }
 
-    public void returnBook(Book borrowedBook) {
+    public Book returnBook(int bookId, String userName) {
+        Book book = bookRepository.getBookById(bookId);
 
+        if (book == null) {
+            System.err.println("Error: this book doesn't exist.");
+            return null;
+        } else if (book.getCurrentBookHolder().isEmpty()) {
+            System.err.println("Error: this book wasn't borrowed.");
+            return null;
+        } else if (!userName.equals(book.getCurrentBookHolder())) {
+            System.err.println("Error: this book is borrowed by another user.");
+            return null;
+        }
+
+        book.setCurrentBookHolder("");
+        book.setBorrowDate(null);
+
+        return book;
     }
 
     public void displayUnborrowedBookList() {
@@ -72,5 +94,14 @@ public class BookService {
                 }
             }
         }
+    }
+
+    public long getBookRentalPeriod(int bookId) {
+        Book book = bookRepository.getBookById(bookId);
+        if (book.getBorrowDate() == null) {
+            return -1;
+        }
+
+        return ChronoUnit.DAYS.between(book.getBorrowDate(), LocalDate.now());
     }
 }

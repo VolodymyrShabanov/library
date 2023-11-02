@@ -25,19 +25,44 @@ public class LibraryService {
     }
 
     public void borrowBook(int bookId) {
-        Book book = bookService.borrowBook(bookId, userService.getCurrentUserName());
-        if (book == null) {
+        if (userService.getCurrentUser() == null) {
+            System.err.println("Error: user is not logged in.");
             return;
         }
+
+        Book book = bookService.borrowBook(bookId, userService.getCurrentUserName());
+
+        if (book == null) return;
 
         userService.borrowBook(book);
     }
 
-    public void returnBook() {
+    public void returnBook(int bookId) {
+        if (userService.getCurrentUser() == null) {
+            System.err.println("Error: user is not logged in.");
+            return;
+        }
 
+        Book book = bookService.returnBook(bookId, userService.getCurrentUserName());
+
+        if (book == null) return;
+
+        userService.returnBook(book);
     }
 
-    public void displayUserBooks() { userService.displayUserBooks(); }
+    public void displayUserBooks() {
+        userService.displayUserBooks();
+    }
+
+    public void displayBookRentalPeriod(int bookId) {
+        long period = bookService.getBookRentalPeriod(bookId);
+        if (period < 0) {
+            System.out.println("The book is not borrowed\n");
+        } else {
+            System.out.printf("The book was borrowed %s day(s) ago\n", period);
+        }
+    }
+
     public void displayBookList() {
         bookService.displayAllBooks();
     }
@@ -59,10 +84,10 @@ public class LibraryService {
     }
 
     public void displayCurrentUserName() {
-        if(userService.getCurrentUser() != null) {
+        if (userService.getCurrentUser() != null) {
             System.out.printf("Current user is: '%s'\n", userService.getCurrentUserName());
         } else {
-            System.err.println("Error: you are not logged in.");
+            System.err.println("Error: user is not logged in.");
         }
     }
 }

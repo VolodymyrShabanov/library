@@ -17,7 +17,7 @@ public class UserService {
     }
 
     public void createNewUser(User newUser) {
-        if(!userRepository.userExists(newUser.getUserName())) {
+        if (!userRepository.userExists(newUser.getUserName())) {
             userRepository.addNewUser(newUser);
         } else {
             System.err.println("Error: user with this name already exists.");
@@ -27,8 +27,8 @@ public class UserService {
     public void login(String userName, String password) {
         User tempUser = userRepository.getUserByName(userName);
 
-        if(tempUser != null) {
-            if(tempUser.checkPassword(password)) {
+        if (tempUser != null) {
+            if (tempUser.checkPassword(password)) {
                 currentUser = tempUser;
 
                 System.out.println("Login success!");
@@ -50,17 +50,21 @@ public class UserService {
     }
 
     public void borrowBook(Book book) {
-        if (currentUser == null) {
-            return;
-        }
+        if (currentUser == null) return;
 
         currentUser.borrowBook(book);
     }
 
+    public void returnBook(Book book) {
+        if (currentUser == null) return;
+
+        currentUser.returnBook(book);
+    }
+
     public void displayUserBooks() {
 
-        if(currentUser == null) {
-            System.err.println("Error: user not set.");
+        if (currentUser == null) {
+            System.err.println("Error: user is not logged in.");
             return;
         }
 

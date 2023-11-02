@@ -41,6 +41,10 @@ public class User implements UserInterface {
     }
 
     public void borrowBook(Book book) {
-        this.borrowedBooks.add(book);
+        borrowedBooks.add(book);
+    }
+
+    public void returnBook(Book book) {
+        borrowedBooks.remove(book);
     }
 }

@@ -16,6 +16,8 @@ public class Book implements BookInterface {
     private String author;
     private int year;
     private String currentBookHolder = "";
+    private LocalDate borrowDate;
+
 
     public Book(String title, String author, int year) {
         this.title = title;
@@ -38,9 +40,12 @@ public class Book implements BookInterface {
         return null;
     }
 
-    @Override
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
     public LocalDate getBorrowDate() {
-        return null;
+        return this.borrowDate;
     }
 
     @Override
@@ -78,11 +83,17 @@ public class Book implements BookInterface {
 
     @Override
     public String toString() {
-        return  String.format("\tTitle: %s\n\tAuthor: %s\n\tYear: %d\n\tBookID: %s\n",
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("\tTitle: %s\n\tAuthor: %s\n\tYear: %d\n\tBookID: %s\n",
                 getTitle(),
                 getAuthor(),
                 getYear(),
                 getId()
-        );
+        ));
+        if (getBorrowDate() != null) {
+            sb.append(String.format("\tBorrow date: %s\n", getBorrowDate()));
+        }
+
+        return sb.toString();
     }
 }

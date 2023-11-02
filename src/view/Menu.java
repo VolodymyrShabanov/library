@@ -32,7 +32,7 @@ public class Menu implements MenuInterface {
 
             System.out.println();
 
-            System.out.println("2. Register a new user");
+            System.out.println("2. Sign Up");
             System.out.println("3. Login");
 
             System.out.println();
@@ -42,16 +42,17 @@ public class Menu implements MenuInterface {
 
             System.out.println();
 
-            System.out.println("6. Library books list");
-            System.out.println("7. Unborrowed books list");
-            System.out.println("8. Borrowed books list");
+            System.out.println("6. Display library books list");
+            System.out.println("7. Display unborrowed books list");
+            System.out.println("8. Display borrowed books list");
             System.out.println("9. Display books by title");
             System.out.println("10. Display books by author name");
-            System.out.println("11. Display user books");
+            System.out.println("11. Display user book list");
+            System.out.println("12. Display how long the book is borrowed");
 
             System.out.println();
 
-            System.out.println("12. Display current reader name");
+            System.out.println("13. Display current reader name");
 
             System.out.println();
 
@@ -102,10 +103,19 @@ public class Menu implements MenuInterface {
                     break;
                 }
                 case "4": {
+                    clearConsole();
                     System.out.println("Enter bookID: ");
                     int bookID = Integer.parseInt(scanner.nextLine());
 
                     libraryService.borrowBook(bookID);
+                    break;
+                }
+                case "5": {
+                    clearConsole();
+                    System.out.println("Enter bookID: ");
+                    int bookID = Integer.parseInt(scanner.nextLine());
+
+                    libraryService.returnBook(bookID);
                     break;
                 }
                 case "6": {
@@ -145,6 +155,14 @@ public class Menu implements MenuInterface {
                     break;
                 }
                 case "12": {
+                    clearConsole();
+                    System.out.println("Enter bookID: ");
+                    int bookID = Integer.parseInt(scanner.nextLine());
+
+                    libraryService.displayBookRentalPeriod(bookID);
+                    break;
+                }
+                case "13": {
                     clearConsole();
                     libraryService.displayCurrentUserName();
                     break;
