@@ -42,6 +42,16 @@ public class BookRepositoryTest {
 
 
     @Test
+    void testAddBookIsNull() { // ну не наю как суда может попасть null
+        int previousListLength = bookRepository.getBookList().size();
+        Book newBook = null;
+        bookRepository.addBook(newBook);
+        int nextListLength = bookRepository.getBookList().size();
+        //System.out.println(previousListLength + " || " + nextListLength);
+        assertTrue(previousListLength == nextListLength);
+    }
+
+    @Test
     void testAddBook() {
         int previousListLength = bookRepository.getBookList().size();
         Book book = new Book("1984", "George Orwell", 1950);
@@ -75,15 +85,27 @@ public class BookRepositoryTest {
     }
 
     @Test
-    void testBookListByAuthorIsNotNull(){
+    void testBookListByAuthorIsNotNull() {
         assertNotNull(bookRepository.getBookListByAuthor("Harper Lee"));
         assertNotNull(bookRepository.getBookListByAuthor(""));
     }
+
     @Test
-    void testBookListByTitleIsNotNull(){
+    void testBookListByTitleIsNotNull() {
         assertNotNull(bookRepository.getBookListByTitle("1984"));
         assertNotNull(bookRepository.getBookListByTitle(""));
     }
 
+    @Test
+    void testBookByIdIsNotExist() {
+        int bookId = -1;
+        assertNull(bookRepository.getBookById(bookId));
+    }
+
+    @Test
+    void testBookByIdIsExist() {
+        int bookId = bookRepository.getBookList().size() - 1;
+        assertNotNull(bookRepository.getBookById(bookId));
+    }
 
 }
