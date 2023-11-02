@@ -173,6 +173,7 @@ public class Menu {
                     System.out.println("Enter bookID: ");
                     int bookID = Integer.parseInt(scanner.nextLine());
 
+                    clearConsole();
                     libraryService.displayBookHolder(bookID);
                     break;
                 }

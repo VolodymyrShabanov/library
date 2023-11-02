@@ -59,7 +59,7 @@ public class BookService {
         Book book = bookRepository.getBookById(bookId);
 
         if (book == null) {
-            System.err.println("Error: this book doesn't exist.");
+            System.err.println("Error: no books with this identifier are registered.");
             return null;
         } else if (!book.getCurrentBookHolder().isEmpty()) {
             System.err.println("Error: this book is already borrowed by another user.");
@@ -76,7 +76,7 @@ public class BookService {
         Book book = bookRepository.getBookById(bookId);
 
         if (book == null) {
-            System.err.println("Error: this book doesn't exist.");
+            System.err.println("Error: no books with this identifier are registered.");
             return null;
         } else if (book.getCurrentBookHolder().isEmpty()) {
             System.err.println("Error: this book wasn't borrowed.");
@@ -118,7 +118,7 @@ public class BookService {
                 if (book != null) System.out.println(book);
         }
     }
-    
+
     public long getBookRentalPeriod(int bookId) {
         Book book = bookRepository.getBookById(bookId);
         if (book.getBorrowDate() == null) {
@@ -131,14 +131,17 @@ public class BookService {
     public void displayBookHolder(int bookId) {
        Book book = bookRepository.getBookById(bookId);
        if (book == null) {
-           System.out.println("No books with this identifier are registered");
+           System.err.println("Error: no books with this identifier are registered.");
            return;
        }
+
        String holder = book.getCurrentBookHolder();
+
        if (holder.isEmpty()) {
-           System.out.println("The book is available");
+           System.out.println("This book is available.");
+           return;
        }
 
-       System.out.printf("The book is borrowed by %s\n", holder);
+       System.out.printf("This book is borrowed by %s\n", holder);
     }
 }
