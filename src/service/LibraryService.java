@@ -78,6 +78,10 @@ public class LibraryService {
         bookService.displayBooksByAuthor(authorName);
     }
 
+    public void displayBookHolder(int bookId) {
+        bookService.displayBookHolder(bookId);
+    }
+
     public void displayCurrentUserName() {
         userService.displayCurrentUserName();
     }

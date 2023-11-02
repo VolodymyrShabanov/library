@@ -47,10 +47,11 @@ public class Menu {
             System.out.println("10. Display books by author name");
             System.out.println("11. Display user book list");
             System.out.println("12. Display how long the book is borrowed");
+            System.out.println("13. Display who borrowed the book");
 
             System.out.println();
 
-            System.out.println("13. Display current reader name");
+            System.out.println("14. Display current reader name");
 
             System.out.println();
 
@@ -168,6 +169,14 @@ public class Menu {
                     break;
                 }
                 case "13": {
+                    clearConsole();
+                    System.out.println("Enter bookID: ");
+                    int bookID = Integer.parseInt(scanner.nextLine());
+
+                    libraryService.displayBookHolder(bookID);
+                    break;
+                }
+                case "14": {
                     clearConsole();
                     libraryService.displayCurrentUserName();
                     break;
