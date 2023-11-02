@@ -69,7 +69,8 @@ public class Menu implements MenuInterface {
                     String bookAuthor = scanner.nextLine();
 
                     System.out.println("Enter book year: ");
-                    int bookYear = Integer.parseInt(scanner.nextLine());
+                    int bookYear = scanner.nextInt();
+                    scanner.nextLine();
 
                     Book tempBook = new Book(bookTitle, bookAuthor, bookYear);
 

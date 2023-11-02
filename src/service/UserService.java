@@ -17,6 +17,16 @@ public class UserService {
     }
 
     public void createNewUser(User newUser) {
+        if(newUser == null) {
+            System.err.println("Error: user can't be null.");
+            return;
+        }
+
+        if(newUser.getUserName().isBlank()) {
+            System.err.println("Error: user data doesn't match the format.");
+            return;
+        }
+
         if (!userRepository.userExists(newUser.getUserName())) {
             userRepository.addNewUser(newUser);
         } else {
@@ -25,6 +35,11 @@ public class UserService {
     }
 
     public void login(String userName, String password) {
+        if(userName.isBlank()) {
+            System.err.println("Error: login data doesn't match the format.");
+            return;
+        }
+
         User tempUser = userRepository.getUserByName(userName);
 
         if (tempUser != null) {
@@ -62,7 +77,6 @@ public class UserService {
     }
 
     public void displayUserBooks() {
-
         if (currentUser == null) {
             System.err.println("Error: user is not logged in.");
             return;

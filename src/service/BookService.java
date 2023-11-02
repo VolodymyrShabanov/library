@@ -4,6 +4,7 @@ import lib.MyArrayList;
 import model.Book;
 import repository.BookRepository;
 
+import java.sql.Array;
 import java.sql.SQLOutput;
 import java.time.LocalDate;
 
@@ -20,6 +21,16 @@ public class BookService {
     }
 
     public void addNewBook(Book book) {
+        if (book == null) {
+            System.err.println("Error: book can't be null.");
+            return;
+        }
+
+        if (book.getTitle().isBlank() || book.getAuthor().isBlank() || Integer.toString(book.getYear()).length() != 4) {
+            System.err.println("Error: book data doesn't match the format.");
+            return;
+        }
+
         System.out.printf("Added: %s\n", book.getTitle());
         bookRepository.addBook(book);
     }
