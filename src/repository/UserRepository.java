@@ -15,19 +15,17 @@ public class UserRepository {
     }
 
     public User getUserByName(String userName) {
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUserName().equals(userName))
-                return userList.get(i);
-        }
+        for (User user : userList)
+            if (user.getUserName().equals(userName))
+                return user;
 
         return null;
     }
 
     public boolean userExists(String userName) {
-        for (int i = 0; i < userList.size(); i++) {
-            if (userList.get(i).getUserName().equals(userName))
+        for (User user : userList)
+            if (user.getUserName().equals(userName))
                 return true;
-        }
 
         return false;
     }

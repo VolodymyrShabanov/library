@@ -1,20 +1,17 @@
 package view;
 
-import interfaces.MenuInterface;
 import model.Book;
 import model.User;
-import service.BookService;
 import service.LibraryService;
-import service.UserService;
 
-import java.sql.SQLOutput;
 import java.util.Scanner;
 
 /**
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
-public class Menu implements MenuInterface {
+
+public class Menu {
     private LibraryService libraryService;
 
     public Menu() {
@@ -23,6 +20,7 @@ public class Menu implements MenuInterface {
 
     public void run() {
         Scanner scanner = new Scanner(System.in);
+
         boolean isRunning = true;
 
         while (isRunning) {
@@ -100,6 +98,7 @@ public class Menu implements MenuInterface {
                     System.out.println("Enter user password: ");
                     String pass = scanner.nextLine();
 
+                    clearConsole();
                     libraryService.login(userName, pass);
                     break;
                 }
@@ -108,6 +107,7 @@ public class Menu implements MenuInterface {
                     System.out.println("Enter bookID: ");
                     int bookID = Integer.parseInt(scanner.nextLine());
 
+                    clearConsole();
                     libraryService.borrowBook(bookID);
                     break;
                 }
@@ -116,6 +116,7 @@ public class Menu implements MenuInterface {
                     System.out.println("Enter bookID: ");
                     int bookID = Integer.parseInt(scanner.nextLine());
 
+                    clearConsole();
                     libraryService.returnBook(bookID);
                     break;
                 }
@@ -139,6 +140,7 @@ public class Menu implements MenuInterface {
                     System.out.println("Enter the title: ");
                     String title = scanner.nextLine();
 
+                    clearConsole();
                     libraryService.displayBooksByTitle(title);
                     break;
                 }
@@ -147,6 +149,7 @@ public class Menu implements MenuInterface {
                     System.out.println("Enter the author name: ");
                     String authorName = scanner.nextLine();
 
+                    clearConsole();
                     libraryService.displayBooksByAuthor(authorName);
                     break;
                 }
@@ -160,6 +163,7 @@ public class Menu implements MenuInterface {
                     System.out.println("Enter bookID: ");
                     int bookID = Integer.parseInt(scanner.nextLine());
 
+                    clearConsole();
                     libraryService.displayBookRentalPeriod(bookID);
                     break;
                 }

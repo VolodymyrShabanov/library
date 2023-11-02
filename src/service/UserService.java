@@ -1,13 +1,11 @@
 package service;
 
-import interfaces.UserServiceInterface;
 import lib.MyArrayList;
 import model.Book;
 import model.User;
 import repository.UserRepository;
 
 public class UserService {
-
     private User currentUser = null;
 
     private UserRepository userRepository;
@@ -17,12 +15,12 @@ public class UserService {
     }
 
     public void createNewUser(User newUser) {
-        if(newUser == null) {
+        if (newUser == null) {
             System.err.println("Error: user can't be null.");
             return;
         }
 
-        if(newUser.getUserName().isBlank()) {
+        if (newUser.getUserName().isBlank()) {
             System.err.println("Error: user data doesn't match the format.");
             return;
         }
@@ -35,7 +33,7 @@ public class UserService {
     }
 
     public void login(String userName, String password) {
-        if(userName.isBlank()) {
+        if (userName.isBlank()) {
             System.err.println("Error: login data doesn't match the format.");
             return;
         }
@@ -89,11 +87,15 @@ public class UserService {
         } else {
             System.out.println("Book list:");
 
-            for (int i = 0; i < bookList.size(); i++) {
-                if (bookList.get(i) != null) {
-                    System.out.println(bookList.get(i).toString());
-                }
-            }
+            for (Book book : bookList)
+                if (book != null) System.out.println(book);
         }
+    }
+
+    public void displayCurrentUserName() {
+        if (currentUser != null)
+            System.out.printf("Current user is: '%s'\n", currentUser.getUserName());
+        else
+            System.err.println("Error: user is not logged in.");
     }
 }

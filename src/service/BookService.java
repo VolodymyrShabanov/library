@@ -13,6 +13,7 @@ import java.time.temporal.ChronoUnit;
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
+
 public class BookService {
 
     private BookRepository bookRepository;
@@ -34,6 +35,22 @@ public class BookService {
 
         System.out.printf("Added: %s\n", book.getTitle());
         bookRepository.addBook(book);
+    }
+
+    public void displayBookRentalPeriod(int bookId) {
+        Book book = bookRepository.getBookById(bookId);
+
+        if(book == null) {
+            System.err.println("Error: this book doesn't exist.");
+            return;
+        }
+
+        long borrowPeriod = book.getRentalPeriod();
+
+        if (borrowPeriod < 0)
+            System.err.println("Error: this book is not borrowed.\n");
+        else
+            System.out.printf("This book was borrowed %s day(s) ago\n", borrowPeriod);
     }
 
     public void displayAllBooks() {
@@ -99,20 +116,9 @@ public class BookService {
         } else {
             System.out.println("Book list:");
 
-            for (int i = 0; i < bookList.size(); i++) {
-                if (bookList.get(i) != null) {
-                    System.out.println(bookList.get(i).toString());
-                }
-            }
+            for (Book book : bookList)
+                if (book != null) System.out.println(book);
         }
     }
 
-    public long getBookRentalPeriod(int bookId) {
-        Book book = bookRepository.getBookById(bookId);
-        if (book.getBorrowDate() == null) {
-            return -1;
-        }
-
-        return ChronoUnit.DAYS.between(book.getBorrowDate(), LocalDate.now());
-    }
 }

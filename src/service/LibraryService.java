@@ -55,12 +55,7 @@ public class LibraryService {
     }
 
     public void displayBookRentalPeriod(int bookId) {
-        long period = bookService.getBookRentalPeriod(bookId);
-        if (period < 0) {
-            System.out.println("The book is not borrowed\n");
-        } else {
-            System.out.printf("The book was borrowed %s day(s) ago\n", period);
-        }
+        bookService.displayBookRentalPeriod(bookId);
     }
 
     public void displayBookList() {
@@ -84,10 +79,6 @@ public class LibraryService {
     }
 
     public void displayCurrentUserName() {
-        if (userService.getCurrentUser() != null) {
-            System.out.printf("Current user is: '%s'\n", userService.getCurrentUserName());
-        } else {
-            System.err.println("Error: user is not logged in.");
-        }
+        userService.displayCurrentUserName();
     }
 }

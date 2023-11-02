@@ -1,15 +1,14 @@
 package model;
 
-import interfaces.BookInterface;
-
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 
 /**
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
-public class Book implements BookInterface {
 
+public class Book {
     private final int id;
     private static int countId;
     private String title;
@@ -18,7 +17,6 @@ public class Book implements BookInterface {
     private String currentBookHolder = "";
     private LocalDate borrowDate;
 
-
     public Book(String title, String author, int year) {
         this.title = title;
         this.author = author;
@@ -26,31 +24,28 @@ public class Book implements BookInterface {
         this.id = countId++;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    @Override
-    public String getDescription() {
-        return null;
-    }
-
-    @Override
-    public LocalDate getPublishingDate() {
-        return null;
-    }
-
-    public void setBorrowDate(LocalDate borrowDate) {
-        this.borrowDate = borrowDate;
+    public long getRentalPeriod() {
+        return borrowDate != null ? ChronoUnit.DAYS.between(borrowDate, LocalDate.now()) : -1;
     }
 
     public LocalDate getBorrowDate() {
         return this.borrowDate;
     }
 
-    @Override
+    public void setBorrowDate(LocalDate borrowDate) {
+        this.borrowDate = borrowDate;
+    }
+
     public String getCurrentBookHolder() {
         return currentBookHolder;
+    }
+
+    public void setCurrentBookHolder(String currentBookHolder) {
+        this.currentBookHolder = currentBookHolder;
+    }
+
+    public String getTitle() {
+        return title;
     }
 
     public void setTitle(String title) {
@@ -77,11 +72,6 @@ public class Book implements BookInterface {
         return id;
     }
 
-    public void setCurrentBookHolder(String currentBookHolder) {
-        this.currentBookHolder = currentBookHolder;
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(String.format("\tTitle: %s\n\tAuthor: %s\n\tYear: %d\n\tBookID: %s\n",

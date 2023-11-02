@@ -1,14 +1,13 @@
 package model;
 
-import interfaces.UserInterface;
 import lib.MyArrayList;
 
 /**
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
-public class User implements UserInterface {
 
+public class User {
     private final int id;
     private static int countId;
     private String userName;
@@ -21,30 +20,28 @@ public class User implements UserInterface {
         this.borrowedBooks = new MyArrayList<>();
         this.id = countId++;
     }
-    @Override
-    public String getUserName() {
-        return userName;
-    }
-
-    @Override
-    public boolean checkPassword(String password) {
-        return password.equals(this.password);
-    }
-
-    @Override
-    public MyArrayList<Book> getUserBooks() {
-        return borrowedBooks;
-    }
 
     public int getId() {
         return id;
+    }
+
+    public void returnBook(Book book) {
+        borrowedBooks.remove(book);
     }
 
     public void borrowBook(Book book) {
         borrowedBooks.add(book);
     }
 
-    public void returnBook(Book book) {
-        borrowedBooks.remove(book);
+    public String getUserName() {
+        return userName;
+    }
+
+    public MyArrayList<Book> getUserBooks() {
+        return borrowedBooks;
+    }
+
+    public boolean checkPassword(String password) {
+        return password.equals(this.password);
     }
 }
