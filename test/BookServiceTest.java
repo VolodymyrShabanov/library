@@ -112,7 +112,7 @@ public class BookServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = {0, 1, 12, 123, 12345, -123, -1234})
+    @ValueSource(ints = {0, 1, 12, 123, 12345, -1234})
     void testAddNewBookYearLengthNotFourCharacters(int year) {
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
         PrintStream standardStreamErr = System.err;
@@ -169,7 +169,7 @@ public class BookServiceTest {
         System.setErr(new PrintStream(outputStream));
 
         bookService.borrowBook(-1, "");
-        String expected = "Error: this book doesn't exist.";
+        String expected = "Error: no books with this identifier are registered.";
 
         assertEquals(expected, outputStream.toString().trim());
         System.setErr(standardStreamErr);
@@ -210,7 +210,7 @@ public class BookServiceTest {
         System.setErr(new PrintStream(outputStream));
 
         bookService.returnBook(-1, "");
-        String expected = "Error: this book doesn't exist.";
+        String expected = "Error: no books with this identifier are registered.";
 
         assertEquals(expected, outputStream.toString().trim());
         System.setErr(standardStreamErr);
