@@ -30,5 +30,6 @@ public class UserRepository {
         }
 
         return false;
+        //return getUserByName(userName) != null;
     }
 }

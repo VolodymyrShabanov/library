@@ -1,8 +1,7 @@
+
 package repository;
 
-import interfaces.BookRepositoryInterface;
 import lib.MyArrayList;
-import lib.MyList;
 import model.Book;
 
 import java.util.function.Predicate;
@@ -18,7 +17,7 @@ public class BookRepository {
     public BookRepository() {
         this.books = new MyArrayList<>();
     }
-    
+
     public void addBook(Book book) {
         books.add(book);
     }
@@ -43,7 +42,6 @@ public class BookRepository {
 
     public MyArrayList<Book> getBorrowedBookList() {
         return getBookByPredicate(book -> !book.getCurrentBookHolder().isEmpty());
-
     }
 
     public MyArrayList<Book> getBookListByAuthor(String authorName) {
@@ -60,7 +58,6 @@ public class BookRepository {
                 return book;
             }
         }
-
         return null;
     }
 }

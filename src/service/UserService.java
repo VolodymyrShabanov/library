@@ -39,7 +39,6 @@ public class UserService {
             System.err.println("Error: login data doesn't match the format.");
             return;
         }
-
         User tempUser = userRepository.getUserByName(userName);
 
         if (tempUser != null) {
