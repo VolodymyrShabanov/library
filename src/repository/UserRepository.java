@@ -28,5 +28,6 @@ public class UserRepository {
                 return true;
 
         return false;
+        //return getUserByName(userName) != null;
     }
 }

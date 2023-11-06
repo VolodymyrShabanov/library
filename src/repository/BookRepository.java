@@ -9,8 +9,8 @@ import java.util.function.Predicate;
  * Created by Volodymyr Sh on 30.10.2023
  * project name: Library
  */
-
 public class BookRepository {
+
     private final MyArrayList<Book> books;
 
     public BookRepository() {
@@ -27,7 +27,6 @@ public class BookRepository {
 
     public MyArrayList<Book> getBookByPredicate(Predicate<Book> predicate) {
         MyArrayList<Book> result = new MyArrayList<>();
-
         for (Book book : books)
             if (predicate.test(book))
                 result.add(book);
@@ -41,7 +40,6 @@ public class BookRepository {
 
     public MyArrayList<Book> getBorrowedBookList() {
         return getBookByPredicate(book -> !book.getCurrentBookHolder().isEmpty());
-
     }
 
     public MyArrayList<Book> getBookListByAuthor(String authorName) {

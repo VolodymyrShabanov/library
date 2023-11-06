@@ -1,6 +1,5 @@
-import lib.MyArrayList;
+
 import model.Book;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.BookRepository;
@@ -14,17 +13,15 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class BookRepositoryTest {
     private BookRepository bookRepository;
-
     public BookRepositoryTest() {
         this.bookRepository = new BookRepository();
     }
-
     public void addAllBook(Book... books) {
         bookRepository.getBookList().addAll(books);
     }
 
     @BeforeEach
-    private void init() {
+    public void init() {
         addAllBook(
                 new Book("To Kill a Mockingbird", "Harper Lee", 1960),
                 new Book("1984", "George Orwell", 1949),
@@ -37,28 +34,23 @@ public class BookRepositoryTest {
                 new Book("War and Peace", "Leo Tolstoy", 1869),
                 new Book("The Lord of the Rings", "J.R.R. Tolkien", 1954)
         );
-        //System.out.println(bookRepository);
     }
 
-
     @Test
-    void testAddBookIsNull() { // ну не наю как суда может попасть null
-        int previousListLength = bookRepository.getBookList().size();
+    void testAddBookIsNull() {
+        int listLength = bookRepository.getBookList().size();
         Book newBook = null;
         bookRepository.addBook(newBook);
-        int nextListLength = bookRepository.getBookList().size();
-        //System.out.println(previousListLength + " || " + nextListLength);
-        assertTrue(previousListLength == nextListLength);
+        assertEquals(listLength + 1, bookRepository.getBookList().size());
     }
 
     @Test
     void testAddBook() {
-        int previousListLength = bookRepository.getBookList().size();
+        int listLength = bookRepository.getBookList().size();
         Book book = new Book("1984", "George Orwell", 1950);
         bookRepository.addBook(book);
-        int nextListLength = bookRepository.getBookList().size();
-        //System.out.println(previousListLength + " || " + nextListLength);
-        assertTrue(previousListLength < nextListLength);
+        assertEquals(listLength + 1, bookRepository.getBookList().size());
+
     }
 
     @Test
