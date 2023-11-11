@@ -6,6 +6,7 @@ import repository.BookRepository;
 
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.util.Optional;
 
 /**
  * Created by Volodymyr Sh on 30.10.2023
@@ -36,14 +37,14 @@ public class BookService {
     }
 
     public void displayBookRentalPeriod(int bookId) {
-        Book book = bookRepository.getBookById(bookId);
+        Optional<Book> book = bookRepository.getBookById(bookId);
 
-        if(book == null) {
+        if(book.isEmpty()) {
             System.err.println("Error: this book doesn't exist.");
             return;
         }
 
-        long borrowPeriod = book.getRentalPeriod();
+        long borrowPeriod = book.get().getRentalPeriod();
 
         if (borrowPeriod < 0)
             System.err.println("Error: this book is not borrowed.\n");
@@ -56,40 +57,40 @@ public class BookService {
     }
 
     public Book borrowBook(int bookId, String userName) {
-        Book book = bookRepository.getBookById(bookId);
+        Optional<Book> book = bookRepository.getBookById(bookId);
 
-        if (book == null) {
+        if (book.isEmpty()) {
             System.err.println("Error: no books with this identifier are registered.");
             return null;
-        } else if (!book.getCurrentBookHolder().isEmpty()) {
+        } else if (!book.get().getCurrentBookHolder().isEmpty()) {
             System.err.println("Error: this book is already borrowed by another user.");
             return null;
         }
 
-        book.setCurrentBookHolder(userName);
-        book.setBorrowDate(LocalDate.now());
+        book.get().setCurrentBookHolder(userName);
+        book.get().setBorrowDate(LocalDate.now());
 
-        return book;
+        return book.get();
     }
 
     public Book returnBook(int bookId, String userName) {
-        Book book = bookRepository.getBookById(bookId);
+        Optional<Book> book = bookRepository.getBookById(bookId);
 
-        if (book == null) {
+        if (book.isEmpty()) {
             System.err.println("Error: no books with this identifier are registered.");
             return null;
-        } else if (book.getCurrentBookHolder().isEmpty()) {
+        } else if (book.get().getCurrentBookHolder().isEmpty()) {
             System.err.println("Error: this book wasn't borrowed.");
             return null;
-        } else if (!userName.equals(book.getCurrentBookHolder())) {
+        } else if (!userName.equals(book.get().getCurrentBookHolder())) {
             System.err.println("Error: this book is borrowed by another user.");
             return null;
         }
 
-        book.setCurrentBookHolder("");
-        book.setBorrowDate(null);
+        book.get().setCurrentBookHolder("");
+        book.get().setBorrowDate(null);
 
-        return book;
+        return book.get();
     }
 
     public void displayUnborrowedBookList() {
@@ -120,22 +121,24 @@ public class BookService {
     }
 
     public long getBookRentalPeriod(int bookId) {
-        Book book = bookRepository.getBookById(bookId);
-        if (book.getBorrowDate() == null) {
+        Optional<Book> book = bookRepository.getBookById(bookId);
+
+        if (book.isPresent() && book.get().getBorrowDate() == null) {
             return -1;
         }
 
-        return ChronoUnit.DAYS.between(book.getBorrowDate(), LocalDate.now());
+        return ChronoUnit.DAYS.between(book.get().getBorrowDate(), LocalDate.now());
     }
 
     public void displayBookHolder(int bookId) {
-       Book book = bookRepository.getBookById(bookId);
-       if (book == null) {
+        Optional<Book> book = bookRepository.getBookById(bookId);
+
+       if (book.isEmpty()) {
            System.err.println("Error: no books with this identifier are registered.");
            return;
        }
 
-       String holder = book.getCurrentBookHolder();
+       String holder = book.get().getCurrentBookHolder();
 
        if (holder.isEmpty()) {
            System.out.println("This book is available.");

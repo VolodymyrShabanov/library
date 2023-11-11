@@ -3,6 +3,7 @@ package repository;
 import lib.MyArrayList;
 import model.Book;
 
+import java.util.Optional;
 import java.util.function.Predicate;
 
 /**
@@ -50,11 +51,16 @@ public class BookRepository {
         return getBookByPredicate(book -> book.getTitle().equals(title));
     }
 
-    public Book getBookById(int id) {
-        for (Book book : books)
-            if (book.getId() == id)
-                return book;
+    public Optional<Book> getBookById(int id) {
+        Book searchResult = null;
 
-        return null;
+        for (Book book : books){
+            if (book.getId() == id){
+                searchResult = book;
+                break;
+            }
+        }
+
+        return Optional.ofNullable(searchResult);
     }
 }
