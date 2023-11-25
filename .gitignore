@@ -3,7 +3,9 @@ out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 .idea/
-
+*.iml
+src/Notes.md
+src/ProgramRequirements.md
 
 ### Eclipse ###
 .apt_generated
