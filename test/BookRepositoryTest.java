@@ -96,8 +96,10 @@ public class BookRepositoryTest {
 
     @Test
     void testBookByIdIsExist() {
-        int bookId = bookRepository.getBookList().size() - 1;
-        assertNotNull(bookRepository.getBookById(bookId));
+        Book newBook = new Book("Three", "Baccogan", 1749);
+        bookRepository.addBook(newBook);
+        assertEquals(newBook, bookRepository.getBookById(newBook.getId()));
+        assertNotNull(bookRepository.getBookById(newBook.getId()));
     }
 
 }

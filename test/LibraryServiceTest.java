@@ -92,7 +92,7 @@ class LibraryServiceTest {
         System.setErr(new PrintStream(outputStream));
 
         libraryService.borrowBook(0);
-        String expected = "Error: this book doesn't exist.";
+        String expected = "Error: no books with this identifier are registered.";
 
         assertEquals(expected, outputStream.toString().trim());
         System.setErr(standardStreamErr);
@@ -140,7 +140,7 @@ class LibraryServiceTest {
         System.setErr(new PrintStream(outputStream));
 
         libraryService.returnBook(0);
-        String expected = "Error: this book doesn't exist.";
+        String expected = "Error: no books with this identifier are registered.";
 
         assertEquals(expected, outputStream.toString().trim());
         System.setErr(standardStreamErr);
@@ -184,14 +184,14 @@ class LibraryServiceTest {
         libraryService.addNewBook(this.bookTest);
 
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream standardStreamOut = System.out;
-        System.setOut(new PrintStream(outputStream));
+        PrintStream standardStreamErr = System.err;
+        System.setErr(new PrintStream(outputStream));
 
         libraryService.displayBookRentalPeriod(this.bookTest.getId());
-        String expected = "The book is not borrowed";
+        String expected = "Error: this book is not borrowed.";
 
         assertEquals(expected, outputStream.toString().trim());
-        System.setOut(standardStreamOut);
+        System.setErr(standardStreamErr);
 
     }
 
@@ -205,9 +205,9 @@ class LibraryServiceTest {
         System.setOut(new PrintStream(outputStream));
 
         libraryService.displayBookRentalPeriod(this.bookTest.getId());
-        String expected = "The book was borrowed 308 day(s) ago";
+        String expected = "This book was borrowed";
 
-        assertEquals(expected, outputStream.toString().trim());
+        assertTrue(outputStream.toString().trim().startsWith(expected));
         System.setOut(standardStreamOut);
 
     }
