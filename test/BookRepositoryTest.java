@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import repository.BookRepository;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -91,14 +93,16 @@ public class BookRepositoryTest {
     @Test
     void testBookByIdIsNotExist() {
         int bookId = -1;
-        assertNull(bookRepository.getBookById(bookId));
+        Optional<Book> optionalBook = bookRepository.getBookById(bookId);
+        assertTrue(optionalBook.isEmpty());
     }
 
     @Test
     void testBookByIdIsExist() {
         Book newBook = new Book("Three", "Baccogan", 1749);
         bookRepository.addBook(newBook);
-        assertEquals(newBook, bookRepository.getBookById(newBook.getId()));
+        Optional<Book> optionalBook = bookRepository.getBookById(newBook.getId());
+        assertEquals(newBook, optionalBook.get());
         assertNotNull(bookRepository.getBookById(newBook.getId()));
     }
 
